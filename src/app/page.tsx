@@ -41,11 +41,13 @@ import {
   CreditCard,
   Languages,
   Link2,
+  Menu,
   MessageSquare,
   Minus,
   Star,
   TrendingUp,
   Users,
+  X,
   Zap,
 } from 'lucide-react';
 import { Logo } from '@/components/logo';
@@ -56,6 +58,7 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { useState } from 'react';
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 
 const testimonials = [
@@ -222,7 +225,7 @@ export default function LandingPage() {
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
           <Logo />
-          <nav className="hidden items-center gap-6 text-sm md:flex">
+          <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
             <Link
               href="#features"
               className="text-muted-foreground transition-colors hover:text-foreground"
@@ -254,7 +257,7 @@ export default function LandingPage() {
               FAQ
             </Link>
           </nav>
-          <div className="flex items-center gap-4">
+          <div className="hidden items-center gap-4 md:flex">
             <Button variant="ghost" asChild>
               <Link href="/login">Login</Link>
             </Button>
@@ -262,6 +265,42 @@ export default function LandingPage() {
               <Link href="/signup">Get Started Free</Link>
             </Button>
           </div>
+          <Sheet>
+            <SheetTrigger asChild>
+                <Button variant="outline" size="icon" className="md:hidden">
+                    <Menu className="h-6 w-6" />
+                    <span className="sr-only">Open navigation menu</span>
+                </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+                <div className="flex flex-col h-full">
+                    <div className="flex items-center justify-between border-b pb-4">
+                        <Logo />
+                         <SheetTrigger asChild>
+                             <Button variant="ghost" size="icon">
+                                <X className="h-6 w-6" />
+                                <span className="sr-only">Close navigation menu</span>
+                            </Button>
+                        </SheetTrigger>
+                    </div>
+                    <nav className="flex flex-col gap-4 py-8">
+                        <Link href="#features" className="text-lg font-medium text-muted-foreground hover:text-foreground">Features</Link>
+                        <Link href="#how-it-works" className="text-lg font-medium text-muted-foreground hover:text-foreground">How it Works</Link>
+                        <Link href="#pricing" className="text-lg font-medium text-muted-foreground hover:text-foreground">Pricing</Link>
+                        <Link href="#testimonials" className="text-lg font-medium text-muted-foreground hover:text-foreground">Testimonials</Link>
+                        <Link href="#faq" className="text-lg font-medium text-muted-foreground hover:text-foreground">FAQ</Link>
+                    </nav>
+                    <div className="mt-auto flex flex-col gap-4">
+                        <Button variant="ghost" asChild className="w-full">
+                            <Link href="/login">Login</Link>
+                        </Button>
+                        <Button asChild className="w-full">
+                            <Link href="/signup">Get Started Free</Link>
+                        </Button>
+                    </div>
+                </div>
+            </SheetContent>
+        </Sheet>
         </div>
       </header>
 
@@ -895,3 +934,5 @@ export default function LandingPage() {
     </div>
   );
 }
+
+    
