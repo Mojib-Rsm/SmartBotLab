@@ -59,6 +59,7 @@ export async function POST(req: NextRequest) {
                             userMessage: messageText,
                             botId: bot.id,
                             knowledgeBaseContent,
+                            targetLanguage: bot.language || 'en',
                         });
 
                         // 4. Log the conversation

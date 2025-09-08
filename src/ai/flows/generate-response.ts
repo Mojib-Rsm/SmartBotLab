@@ -10,6 +10,7 @@
 
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
+import { translateBotResponse } from './translate-bot-responses';
 // In a real implementation, you would query your vector DB here.
 // For now, we simulate finding relevant knowledge.
 
@@ -21,6 +22,7 @@ const GenerateResponseInputSchema = z.object({
     .string()
     .optional()
     .describe('Relevant content retrieved from the knowledge base.'),
+  targetLanguage: z.enum(['en', 'bn']).default('en').describe('The target language for the response.'),
 });
 export type GenerateResponseInput = z.infer<typeof GenerateResponseInputSchema>;
 
@@ -57,6 +59,8 @@ const prompt = ai.definePrompt({
   The user has asked a question, but there is no specific information in the knowledge base.
   Provide a friendly, general response. You can say that you don't have the information right now but will have an expert get back to them.
   {{/if}}
+
+  Always generate the response in English first.
   `,
 });
 
@@ -74,6 +78,19 @@ const generateResponseFlow = ai.defineFlow(
     // For this example, we assume the content is passed in directly.
 
     const { output } = await prompt(input);
-    return output!;
+    
+    if(!output) {
+      throw new Error("Could not generate a response.");
+    }
+
+    if (input.targetLanguage && input.targetLanguage !== 'en') {
+      const translatedResponse = await translateBotResponse({
+        text: output.botResponse,
+        targetLanguage: input.targetLanguage,
+      });
+      return { botResponse: translatedResponse.translatedText };
+    }
+
+    return output;
   }
 );
