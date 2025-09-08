@@ -110,6 +110,25 @@ export default function CreateBot() {
             </Select>
           </div>
           
+          <div className="grid gap-2">
+            <Label htmlFor="purpose-select">Bot Purpose</Label>
+            <Select
+              value={botData.purpose}
+              onValueChange={(value) => setBotData({ ...botData, purpose: value })}
+            >
+              <SelectTrigger id="purpose-select">
+                <SelectValue placeholder="Select a purpose" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="FAQ">FAQ</SelectItem>
+                <SelectItem value="Customer Support">Customer Support</SelectItem>
+                <SelectItem value="Product Info">Product Info</SelectItem>
+                <SelectItem value="Hotel">Hotel</SelectItem>
+                <SelectItem value="E-commerce">E-commerce</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
           <Button type="submit">Launch Bot</Button>
         </form>
       </CardContent>
