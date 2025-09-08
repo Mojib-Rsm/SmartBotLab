@@ -18,6 +18,21 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import {
   ArrowRight,
   BarChart2,
   Bot,
@@ -27,6 +42,7 @@ import {
   Languages,
   Link2,
   MessageSquare,
+  Minus,
   Zap,
 } from 'lucide-react';
 import { Logo } from '@/components/logo';
@@ -58,6 +74,12 @@ const testimonials = [
     quote:
       'If Steve Jobs had designed a bot app, it would have been this one. Simply awesome!!',
     image: 'https://picsum.photos/100/100?random=3',
+  },
+    {
+    name: 'Jane Doe',
+    company: 'Innovate Inc.',
+    quote: 'The analytics and insights feature has been a game-changer for understanding our customer engagement. Highly recommended!',
+    image: 'https://picsum.photos/100/100?random=4',
   },
 ];
 
@@ -402,6 +424,63 @@ export default function LandingPage() {
           </div>
         </section>
 
+        <section id="comparison" className="w-full py-12 md:py-24">
+          <div className="container">
+            <div className="mb-12 flex flex-col items-center justify-center space-y-4 text-center">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                Why SmartBotLab?
+              </h2>
+              <p className="max-w-[700px] text-muted-foreground md:text-lg">
+                See how we stack up against the competition.
+              </p>
+            </div>
+            <Card>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[250px]">Feature</TableHead>
+                    <TableHead className="text-center">SmartBotLab</TableHead>
+                    <TableHead className="text-center">Botmaker</TableHead>
+                    <TableHead className="text-center">FastBots.ai</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-medium">Easy Setup (No Code)</TableCell>
+                    <TableCell className="text-center"><Check className="mx-auto h-5 w-5 text-green-500" /></TableCell>
+                    <TableCell className="text-center"><Check className="mx-auto h-5 w-5 text-green-500" /></TableCell>
+                    <TableCell className="text-center"><Check className="mx-auto h-5 w-5 text-green-500" /></TableCell>
+                  </TableRow>
+                   <TableRow>
+                    <TableCell className="font-medium">Multilingual Support (95+)</TableCell>
+                    <TableCell className="text-center"><Check className="mx-auto h-5 w-5 text-green-500" /></TableCell>
+                    <TableCell className="text-center"><Minus className="mx-auto h-5 w-5 text-muted-foreground" /></TableCell>
+                    <TableCell className="text-center"><Check className="mx-auto h-5 w-5 text-green-500" /></TableCell>
+                  </TableRow>
+                   <TableRow>
+                    <TableCell className="font-medium">YouTube Video Training</TableCell>
+                    <TableCell className="text-center"><Check className="mx-auto h-5 w-5 text-green-500" /></TableCell>
+                     <TableCell className="text-center"><Minus className="mx-auto h-5 w-5 text-muted-foreground" /></TableCell>
+                    <TableCell className="text-center"><Minus className="mx-auto h-5 w-5 text-muted-foreground" /></TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-medium">E-commerce Integration</TableCell>
+                    <TableCell className="text-center"><Check className="mx-auto h-5 w-5 text-green-500" /></TableCell>
+                    <TableCell className="text-center"><Check className="mx-auto h-5 w-5 text-green-500" /></TableCell>
+                    <TableCell className="text-center"><Minus className="mx-auto h-5 w-5 text-muted-foreground" /></TableCell>
+                  </TableRow>
+                   <TableRow>
+                    <TableCell className="font-medium">Advanced Analytics</TableCell>
+                    <TableCell className="text-center"><Check className="mx-auto h-5 w-5 text-green-500" /></TableCell>
+                     <TableCell className="text-center"><Minus className="mx-auto h-5 w-5 text-muted-foreground" /></TableCell>
+                    <TableCell className="text-center"><Check className="mx-auto h-5 w-5 text-green-500" /></TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Card>
+          </div>
+        </section>
+
         <section id="pricing" className="w-full bg-muted py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <div className="mb-12 flex flex-col items-center justify-center space-y-4 text-center">
@@ -476,33 +555,47 @@ export default function LandingPage() {
                 Thousands of businesses are using our AI chatbots for Messenger
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {testimonials.map((testimonial, index) => (
-                <Card key={index}>
-                  <CardContent className="pt-6">
-                    <p className="italic">"{testimonial.quote}"</p>
-                    <div className="mt-4 flex items-center gap-3">
-                      <Avatar>
-                        <AvatarImage
-                          src={testimonial.image}
-                          alt={testimonial.name}
-                          data-ai-hint="person face"
-                        />
-                        <AvatarFallback>
-                          {testimonial.name.charAt(0)}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <p className="font-semibold">{testimonial.name}</p>
-                        <p className="text-sm text-muted-foreground">
-                          {testimonial.company}
-                        </p>
-                      </div>
+             <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full max-w-4xl mx-auto"
+            >
+              <CarouselContent>
+                {testimonials.map((testimonial, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-1">
+                      <Card>
+                        <CardContent className="flex flex-col items-start gap-4 p-6">
+                           <p className="text-lg font-semibold leading-snug">"{testimonial.quote}"</p>
+                          <div className="mt-auto flex items-center gap-3">
+                            <Avatar>
+                              <AvatarImage
+                                src={testimonial.image}
+                                alt={testimonial.name}
+                                data-ai-hint="person face"
+                              />
+                              <AvatarFallback>
+                                {testimonial.name.charAt(0)}
+                              </AvatarFallback>
+                            </Avatar>
+                            <div>
+                              <p className="font-semibold">{testimonial.name}</p>
+                              <p className="text-sm text-muted-foreground">
+                                {testimonial.company}
+                              </p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
           </div>
         </section>
 
