@@ -28,6 +28,7 @@ import {
 import { Logo } from '@/components/logo';
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { ChatWidget } from '@/components/chat-widget';
 
 const testimonials = [
   {
@@ -473,6 +474,7 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+      <ChatWidget />
     </div>
   );
 }
