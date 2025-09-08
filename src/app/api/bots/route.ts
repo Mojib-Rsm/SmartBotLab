@@ -1,5 +1,5 @@
-import { Pool } from 'pg';
 import { NextRequest, NextResponse } from 'next/server';
+import { Pool } from 'pg';
 
 const pool = new Pool({
   user: process.env.PG_USER,
@@ -9,10 +9,10 @@ const pool = new Pool({
   port: Number(process.env.PG_PORT) || 5432,
 });
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
-    const result = await pool.query('SELECT * FROM bots');
-    return NextResponse.json(result.rows, { status: 200 });
+    const result = await pool.query('SELECT * FROM bots ORDER BY id DESC');
+    return NextResponse.json(result.rows);
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
@@ -20,12 +20,12 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, page_id, purpose, language } = await req.json();
+    const { name, page_id, status } = await req.json();
     const result = await pool.query(
-      'INSERT INTO bots (name, page_id, status, messages_sent, users_interacted, purpose, language) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-      [name, page_id, 'inactive', 0, 0, purpose, language]
+      'INSERT INTO bots (name, page_id, status, messages_sent, users_interacted, purpose, language) VALUES ($1, $2, $3, 0, 0, \'N/A\', \'en\') RETURNING *',
+      [name, page_id, status ? 'active' : 'inactive']
     );
-    return NextResponse.json(result.rows[0], { status: 201 });
+    return NextResponse.json(result.rows[0]);
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }

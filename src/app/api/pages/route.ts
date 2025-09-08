@@ -1,5 +1,5 @@
+import { NextResponse } from 'next/server';
 import { Pool } from 'pg';
-import { NextRequest, NextResponse } from 'next/server';
 
 const pool = new Pool({
   user: process.env.PG_USER,
@@ -9,10 +9,10 @@ const pool = new Pool({
   port: Number(process.env.PG_PORT) || 5432,
 });
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
-    const result = await pool.query('SELECT * FROM pages');
-    return NextResponse.json(result.rows, { status: 200 });
+    const result = await pool.query('SELECT * FROM pages ORDER BY id DESC');
+    return NextResponse.json(result.rows);
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
