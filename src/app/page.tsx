@@ -2,61 +2,65 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Bot, Zap, MessageSquare } from 'lucide-react';
+import { CheckCircle, Bot, Zap, MessageSquare, ArrowRight } from 'lucide-react';
 import { Logo } from '@/components/logo';
 
 export default function LandingPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
+        <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
           <Logo />
-          <nav className="flex items-center gap-4">
+          <nav className="hidden items-center gap-6 text-sm md:flex">
+             <Link href="#features" className="text-muted-foreground transition-colors hover:text-foreground">Features</Link>
+             <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">Pricing</Link>
+             <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">Support</Link>
+          </nav>
+          <div className="flex items-center gap-4">
             <Button variant="ghost" asChild>
               <Link href="/login">Login</Link>
             </Button>
             <Button asChild>
-              <Link href="/signup">Get Started Free</Link>
+              <Link href="/signup">Get Started <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
-          </nav>
+          </div>
         </div>
       </header>
       <main className="flex-1">
-        <section className="w-full py-20 md:py-32 lg:py-40 xl:py-48">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-headline">
-                    Build AI Chatbots for Your Business in Minutes
-                  </h1>
-                  <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    SmartBotLab helps you create intelligent, automated chatbots for your Facebook pages without any coding. Engage customers, answer questions, and grow your business.
-                  </p>
-                </div>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
+        <section className="w-full py-24 md:py-32 lg:py-48">
+          <div className="container px-4 text-center md:px-6">
+            <div className="flex flex-col items-center space-y-6">
+              <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+                Visually build, and automate AI chatbots
+              </h1>
+              <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+                SmartBotLab is a powerful platform that allows you to create intelligent chatbots for your Facebook pages. No code, just drag, drop, and automate.
+              </p>
+              <div className="flex flex-col gap-4 min-[400px]:flex-row">
                   <Button asChild size="lg">
                     <Link href="/signup">
-                      Create Your First Bot
+                      Create Your First Bot For Free
                     </Link>
                   </Button>
-                   <Button asChild variant="outline" size="lg">
-                    <Link href="#">
-                      See a Demo
-                    </Link>
-                  </Button>
-                </div>
               </div>
-               <img
-                src="https://picsum.photos/600/400"
-                width="600"
-                height="400"
-                alt="Hero"
-                data-ai-hint="chatbot illustration"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
-              />
             </div>
           </div>
+        </section>
+        
+        <section className="w-full py-12 md:py-24">
+            <div className="container">
+                <div className="flex justify-center text-center">
+                    <p className="text-sm uppercase text-muted-foreground">Trusted by businesses worldwide</p>
+                </div>
+                <div className="mt-8 grid grid-cols-2 items-center justify-center gap-8 text-muted-foreground/60 sm:grid-cols-3 md:grid-cols-6">
+                    <div className="flex justify-center"><span>Logoipsum</span></div>
+                    <div className="flex justify-center"><span>Logoipsum</span></div>
+                    <div className="flex justify-center"><span>Logoipsum</span></div>
+                    <div className="flex justify-center"><span>Logoipsum</span></div>
+                    <div className="flex justify-center"><span>Logoipsum</span></div>
+                    <div className="flex justify-center"><span>Logoipsum</span></div>
+                </div>
+            </div>
         </section>
 
         <section id="features" className="w-full bg-muted py-12 md:py-24 lg:py-32">
@@ -71,44 +75,44 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-3 lg:gap-16 mt-12">
-              <div className="grid gap-1">
-                <Bot className="h-8 w-8 text-primary" />
-                <h3 className="text-lg font-bold">AI-Powered Templates</h3>
-                <p className="text-sm text-muted-foreground">Start with pre-built templates for FAQ, Customer Support, E-commerce, and more. Customize them to fit your needs.</p>
+              <div className="grid gap-2">
+                <Bot className="h-10 w-10 text-primary" />
+                <h3 className="text-xl font-bold">AI-Powered Templates</h3>
+                <p className="text-muted-foreground">Start with pre-built templates for FAQ, Customer Support, E-commerce, and more. Customize them to fit your needs.</p>
               </div>
-              <div className="grid gap-1">
-                <Zap className="h-8 w-8 text-primary" />
-                <h3 className="text-lg font-bold">Instant Setup</h3>
-                <p className="text-sm text-muted-foreground">Connect your Facebook page and get your first bot running in under 5 minutes. No code required.</p>
+              <div className="grid gap-2">
+                <Zap className="h-10 w-10 text-primary" />
+                <h3 className="text-xl font-bold">Instant Setup</h3>
+                <p className="text-muted-foreground">Connect your Facebook page and get your first bot running in under 5 minutes. No code required.</p>
               </div>
-              <div className="grid gap-1">
-                <MessageSquare className="h-8 w-8 text-primary" />
-                <h3 className="text-lg font-bold">Automated Responses</h3>
-                <p className="text-sm text-muted-foreground">Let the AI generate initial responses based on your page content, saving you time and effort.</p>
+              <div className="grid gap-2">
+                <MessageSquare className="h-10 w-10 text-primary" />
+                <h3 className="text-xl font-bold">Automated Responses</h3>
+                <p className="text-muted-foreground">Let the AI generate initial responses based on your page content, saving you time and effort.</p>
               </div>
-               <div className="grid gap-1">
-                <CheckCircle className="h-8 w-8 text-primary" />
-                <h3 className="text-lg font-bold">Multi-Language Support</h3>
-                <p className="text-sm text-muted-foreground">Engage with your audience in their native language with our built-in translation capabilities.</p>
+               <div className="grid gap-2">
+                <CheckCircle className="h-10 w-10 text-primary" />
+                <h3 className="text-xl font-bold">Multi-Language Support</h3>
+                <p className="text-muted-foreground">Engage with your audience in their native language with our built-in translation capabilities.</p>
               </div>
-               <div className="grid gap-1">
-                <CheckCircle className="h-8 w-8 text-primary" />
-                <h3 className="text-lg font-bold">Easy Management</h3>
-                <p className="text-sm text-muted-foreground">A simple and intuitive dashboard to manage all your bots, conversations, and settings in one place.</p>
+               <div className="grid gap-2">
+                <CheckCircle className="h-10 w-10 text-primary" />
+                <h3 className="text-xl font-bold">Easy Management</h3>
+                <p className="text-muted-foreground">A simple and intuitive dashboard to manage all your bots, conversations, and settings in one place.</p>
               </div>
-               <div className="grid gap-1">
-                <CheckCircle className="h-8 w-8 text-primary" />
-                <h3 className="text-lg font-bold">Analytics & Insights</h3>
-                <p className="text-sm text-muted-foreground">Track your bot's performance with key metrics to understand user interaction and improve responses.</p>
+               <div className="grid gap-2">
+                <CheckCircle className="h-10 w-10 text-primary" />
+                <h3 className="text-xl font-bold">Analytics & Insights</h3>
+                <p className="text-muted-foreground">Track your bot's performance with key metrics to understand user interaction and improve responses.</p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="w-full py-12 md:py-24 lg:py-32">
+        <section className="w-full py-20 md:py-32">
             <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
-                <div className="space-y-3">
-                <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight font-headline">
+                <div className="space-y-4">
+                <h2 className="text-4xl font-bold tracking-tighter md:text-5xl/tight font-headline">
                     Ready to Automate Your Customer Interactions?
                 </h2>
                 <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -128,17 +132,51 @@ export default function LandingPage() {
             </div>
         </section>
       </main>
-       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-          <p className="text-xs text-muted-foreground">&copy; 2024 SmartBotLab. All rights reserved.</p>
-          <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-            <Link href="#" className="text-xs hover:underline underline-offset-4" prefetch={false}>
-              Terms of Service
-            </Link>
-            <Link href="#" className="text-xs hover:underline underline-offset-4" prefetch={false}>
-              Privacy
-            </Link>
-          </nav>
-        </footer>
+       <footer className="border-t">
+         <div className="container mx-auto py-12 px-4 md:px-6">
+            <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
+              <div>
+                  <h4 className="font-semibold mb-4">Product</h4>
+                  <nav className="flex flex-col gap-2">
+                      <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Features</Link>
+                      <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Integrations</Link>
+                      <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Pricing</Link>
+                      <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Changelog</Link>
+                  </nav>
+              </div>
+               <div>
+                  <h4 className="font-semibold mb-4">Company</h4>
+                  <nav className="flex flex-col gap-2">
+                      <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">About</Link>
+                      <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Careers</Link>
+                      <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Blog</Link>
+                      <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Contact</Link>
+                  </nav>
+              </div>
+              <div>
+                  <h4 className="font-semibold mb-4">Resources</h4>
+                   <nav className="flex flex-col gap-2">
+                      <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Documentation</Link>
+                      <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">API Reference</Link>
+                      <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Support</Link>
+                      <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Community</Link>
+                  </nav>
+              </div>
+              <div>
+                  <h4 className="font-semibold mb-4">Legal</h4>
+                   <nav className="flex flex-col gap-2">
+                      <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Terms of Service</Link>
+                      <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Privacy Policy</Link>
+                      <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Cookie Policy</Link>
+                  </nav>
+              </div>
+               <div className="col-span-2 md:col-span-1">
+                 <Logo />
+                 <p className="text-sm text-muted-foreground mt-4">&copy; 2024 SmartBotLab. All rights reserved.</p>
+               </div>
+            </div>
+         </div>
+       </footer>
     </div>
   );
 }
