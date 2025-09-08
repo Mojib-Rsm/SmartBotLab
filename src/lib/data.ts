@@ -49,3 +49,9 @@ export const mockBots: Bot[] = [
     language: 'en',
   },
 ];
+
+export async function getUsers() {
+  const res = await fetch('/api/db');
+  if (!res.ok) throw new Error('Failed to fetch users');
+  return res.json();
+}
