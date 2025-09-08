@@ -5,6 +5,7 @@ import {
   PlusCircle,
   Settings,
   Home,
+  BrainCircuit,
 } from 'lucide-react';
 
 import {
@@ -48,6 +49,14 @@ export default function DashboardLayout({
                 <Link href="/dashboard/create-bot">
                   <PlusCircle />
                   Create Bot
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/dashboard/train">
+                  <BrainCircuit />
+                  Train Bot
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
