@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 240 10% 97%;
+    --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
     --card: 0 0% 100%;
     --card-foreground: 224 71.4% 4.1%;
@@ -16,8 +16,8 @@
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 220 14.3% 95.9%;
     --muted-foreground: 220 8.9% 46.1%;
-    --accent: 262.1 83.3% 57.8%;
-    --accent-foreground: 210 20% 98%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
     --border: 220 13% 91%;
@@ -26,10 +26,10 @@
     --radius: 0.75rem;
 
     /* Custom Sidebar Colors */
-    --sidebar-background: 0 0% 100%;
+    --sidebar-background: 240 10% 97%;
     --sidebar-foreground: 224 71.4% 4.1%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-accent: 240 10% 97%;
+    --sidebar-accent: 220 14.3% 95.9%;
     --sidebar-accent-foreground: 224 71.4% 4.1%;
     --sidebar-ring: 262.1 83.3% 57.8%;
   }
@@ -47,7 +47,7 @@
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 263.4 95.2% 66.1%;
+    --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
@@ -72,8 +72,20 @@
   body {
     @apply bg-background text-foreground;
   }
-  main {
+  main:not(.dashboard-main) {
     background-image: radial-gradient(hsl(var(--muted)) 1px, transparent 1px);
     background-size: 16px 16px;
+  }
+  .dashboard-main {
+    background-color: hsl(240, 10%, 97%);
+  }
+  .dark .dashboard-main {
+    background-color: hsl(222.2, 47.4%, 11.2%);
+  }
+}
+
+@layer utilities {
+  .bg-grid-pattern {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke-width='2' stroke='hsl(263.4 95.2% 66.1% / 0.1)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
   }
 }
