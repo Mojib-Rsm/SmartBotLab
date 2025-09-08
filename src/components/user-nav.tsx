@@ -1,12 +1,6 @@
 'use client';
-
 import Link from 'next/link';
-import {
-  LogOut,
-  Settings,
-  User,
-} from 'lucide-react';
-
+import { LogOut, Settings, User, ChevronDown } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -19,23 +13,54 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-export function UserNav() {
+export function UserNav({
+  showAvatarOnly = true,
+}: {
+  showAvatarOnly?: boolean;
+}) {
+  const triggerContent = showAvatarOnly ? (
+    <Avatar className="h-9 w-9">
+      <AvatarImage
+        src="https://picsum.photos/100"
+        alt="@shadcn"
+        data-ai-hint="person face"
+      />
+      <AvatarFallback>CH</AvatarFallback>
+    </Avatar>
+  ) : (
+    <div className="flex items-center gap-2">
+      <Avatar className="h-9 w-9">
+        <AvatarImage
+          src="https://picsum.photos/100"
+          alt="Courtney Henry"
+          data-ai-hint="person face"
+        />
+        <AvatarFallback>CH</AvatarFallback>
+      </Avatar>
+      <div className="hidden text-left group-data-[collapsible=icon]:hidden">
+        <p className="text-sm font-medium leading-none">Courtney Henry</p>
+        <p className="text-xs leading-none text-muted-foreground">Online</p>
+      </div>
+      <ChevronDown className="ml-auto hidden h-4 w-4 text-muted-foreground group-data-[collapsible=icon]:hidden" />
+    </div>
+  );
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-9 w-9 rounded-full">
-          <Avatar className="h-9 w-9">
-            <AvatarImage src="https://picsum.photos/100" alt="@shadcn" data-ai-hint="person face"/>
-            <AvatarFallback>U</AvatarFallback>
-          </Avatar>
+        <Button
+          variant="ghost"
+          className={`relative h-auto w-full justify-start p-0 group-data-[collapsible=icon]:w-9 group-data-[collapsible=icon]:justify-center ${showAvatarOnly ? 'w-9' : ''}`}
+        >
+          {triggerContent}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">User</p>
+            <p className="text-sm font-medium leading-none">Courtney Henry</p>
             <p className="text-xs leading-none text-muted-foreground">
-              user@example.com
+              courtney.henry@example.com
             </p>
           </div>
         </DropdownMenuLabel>
