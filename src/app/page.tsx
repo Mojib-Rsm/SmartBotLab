@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
@@ -21,7 +22,6 @@ import {
   CreditCard,
   Languages,
   Link2,
-  Mail,
   MessageSquare,
   Zap,
 } from 'lucide-react';
@@ -165,8 +165,8 @@ export default function LandingPage() {
             <div className="grid gap-8 md:grid-cols-3">
               <Card className="text-center">
                 <CardHeader>
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-2xl font-bold text-primary">
-                    01
+                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                     <Image src="/images/train-bot.png" alt="Train Bot" width={40} height={40} data-ai-hint="gear brain" />
                   </div>
                   <CardTitle className="mt-4">TRAIN</CardTitle>
                 </CardHeader>
@@ -179,29 +179,27 @@ export default function LandingPage() {
               </Card>
               <Card className="text-center">
                 <CardHeader>
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-2xl font-bold text-primary">
-                    02
+                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                     <Image src="/images/link-bot.png" alt="Link Bot" width={40} height={40} data-ai-hint="link chain" />
                   </div>
                   <CardTitle className="mt-4">LINK</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Link your newly created custom chatbot to your business
-                    Facebook Page.
+                    Connect your chatbot to Messenger, WhatsApp, or your website.
                   </p>
                 </CardContent>
               </Card>
               <Card className="text-center">
                 <CardHeader>
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-2xl font-bold text-primary">
-                    03
+                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                    <Image src="/images/use-bot.png" alt="Use Bot" width={40} height={40} data-ai-hint="chat conversation" />
                   </div>
                   <CardTitle className="mt-4">USE</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Let your AI chatbot respond to incoming messages or reply to
-                    comments like a real human, 24/7/365.
+                    Your AI chatbot will reply to messages like a real human, 24/7.
                   </p>
                 </CardContent>
               </Card>
