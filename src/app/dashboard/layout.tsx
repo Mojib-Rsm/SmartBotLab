@@ -37,6 +37,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 export default function DashboardLayout({
   children,
@@ -110,6 +111,7 @@ export default function DashboardLayout({
           </div>
 
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <Button variant="ghost" size="icon">
               <Bell />
               <span className="sr-only">Notifications</span>
