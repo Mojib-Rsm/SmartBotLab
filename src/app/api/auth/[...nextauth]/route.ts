@@ -1,15 +1,7 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
-import { Pool } from 'pg';
-
-const pool = new Pool({
-  user: process.env.PG_USER,
-  host: process.env.PG_HOST,
-  database: process.env.PG_DATABASE,
-  password: process.env.PG_PASSWORD,
-  port: Number(process.env.PG_PORT) || 5432,
-});
+import { pool } from '@/lib/db';
 
 const handler = NextAuth({
   providers: [
@@ -29,20 +21,17 @@ const handler = NextAuth({
         return false;
       }
       try {
-        const client = await pool.connect();
         // Check if user already exists
-        const { rows } = await client.query('SELECT * FROM users WHERE email = $1', [user.email]);
+        const { rows } = await pool.query('SELECT * FROM users WHERE email = $1', [user.email]);
         
         if (rows.length === 0) {
           // If user doesn't exist, create a new user
-          // Note: NextAuth doesn't provide a password, so you might need to handle this.
-          // For social logins, a password might not be necessary.
-          await client.query(
+          // For social logins, a password is not necessary.
+          await pool.query(
             'INSERT INTO users (name, email, password) VALUES ($1, $2, $3)',
-            [user.name, user.email, 'social_login_no_password'] // Placeholder for password
+            [user.name, user.email, 'social_login'] 
           );
         }
-        client.release();
         return true;
       } catch (error) {
         console.error('Error during sign in:', error);

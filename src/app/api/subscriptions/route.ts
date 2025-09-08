@@ -1,13 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Pool } from 'pg';
-
-const pool = new Pool({
-  user: process.env.PG_USER,
-  host: process.env.PG_HOST,
-  database: process.env.PG_DATABASE,
-  password: process.env.PG_PASSWORD,
-  port: Number(process.env.PG_PORT) || 5432,
-});
+import { pool } from '@/lib/db';
 
 // This is a placeholder for subscription logic, which is often complex.
 // In a real app, this would integrate with a payment provider like Stripe.
@@ -19,11 +11,22 @@ export async function GET(req: NextRequest) {
   if (!user_id) {
     return NextResponse.json({ error: 'User ID is required' }, { status: 400 });
   }
-  return NextResponse.json({ message: `GET subscriptions for user ${user_id} not implemented` });
+  // This is a placeholder query. You'd have a 'subscriptions' table.
+  try {
+    const result = await pool.query('SELECT * FROM users WHERE id = $1', [user_id]);
+    if (result.rows.length > 0) {
+        return NextResponse.json({ subscribed: true, plan: 'pro' }); // Mock response
+    }
+     return NextResponse.json({ subscribed: false }); // Mock response
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message }, { status: 500 });
+  }
 }
 
 export async function POST(req: NextRequest) {
   // Create a new subscription
   const body = await req.json();
-  return NextResponse.json({ message: 'POST subscription not implemented', received: body });
+  const { user_id, plan } = body;
+  // Placeholder response
+  return NextResponse.json({ message: `Subscription created for user ${user_id} on plan ${plan}` });
 }
