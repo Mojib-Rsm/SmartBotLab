@@ -1,9 +1,30 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Bot, Zap, MessageSquare, ArrowRight } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { ArrowRight, Bot, Check, MessageSquare, Plus, Zap } from 'lucide-react';
 import { Logo } from '@/components/logo';
+
+const integrations = [
+    { name: 'OpenAI (ChatGPT)', icon: <Zap className="h-8 w-8" /> },
+    { name: 'Gmail', icon: <MessageSquare className="h-8 w-8" /> },
+    { name: 'Google Sheets', icon: <Bot className="h-8 w-8" /> },
+    { name: 'Slack', icon: <Zap className="h-8 w-8" /> },
+    { name: 'Telegram Bot', icon: <MessageSquare className="h-8 w-8" /> },
+    { name: 'Notion', icon: <Bot className="h-8 w-8" /> },
+    { name: 'HubSpot CRM', icon: <Zap className="h-8 w-8" /> },
+    { name: 'Google Drive', icon: <MessageSquare className="h-8 w-8" /> },
+    { name: 'WordPress', icon: <Bot className="h-8 w-8" /> },
+    { name: 'Shopify', icon: <Zap className="h-8 w-8" /> },
+];
+
+const templates = [
+    { title: 'Send messages on Facebook Messenger using a ChatGPT assistant', apps: ['Facebook Messenger', 'OpenAI (ChatGPT)'] },
+    { title: 'Automatically translate new Facebook Messenger messages with DeepL', apps: ['Facebook Messenger', 'DeepL'] },
+    { title: 'Send a Slack notification for new Facebook Messenger messages', apps: ['Facebook Messenger', 'Slack'] },
+    { title: 'Add new Facebook Messenger messages to Trello as cards', apps: ['Facebook Messenger', 'Trello'] },
+];
 
 export default function LandingPage() {
   return (
@@ -13,8 +34,9 @@ export default function LandingPage() {
           <Logo />
           <nav className="hidden items-center gap-6 text-sm md:flex">
              <Link href="#features" className="text-muted-foreground transition-colors hover:text-foreground">Features</Link>
-             <Link href="#pricing" className="text-muted-foreground transition-colors hover:text-foreground">Pricing</Link>
-             <Link href="#support" className="text-muted-foreground transition-colors hover:text-foreground">Support</Link>
+             <Link href="#integrations" className="text-muted-foreground transition-colors hover:text-foreground">Integrations</Link>
+             <Link href="#templates" className="text-muted-foreground transition-colors hover:text-foreground">Templates</Link>
+             <Link href="#faq" className="text-muted-foreground transition-colors hover:text-foreground">FAQ</Link>
           </nav>
           <div className="flex items-center gap-4">
             <Button variant="ghost" asChild>
@@ -26,120 +48,128 @@ export default function LandingPage() {
           </div>
         </div>
       </header>
+
       <main className="flex-1">
-        <section className="w-full py-24 md:py-32 lg:py-40">
-          <div className="container px-4 text-center md:px-6">
-            <div className="flex flex-col items-center space-y-6">
-               <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm text-primary font-medium">
-                Facebook Messenger Automation
-              </div>
-              <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-                Build and Automate AI Chatbots Visually
-              </h1>
-              <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-                SmartBotLab is a no-code platform to create intelligent, automated chatbots for your Facebook pages. Boost engagement and streamline conversations with AI.
-              </p>
-              <div className="flex flex-col gap-4 min-[400px]:flex-row">
-                  <Button asChild size="lg">
-                    <Link href="/signup">
-                      Create Your First Bot <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                   <Button asChild size="lg" variant="outline">
-                    <Link href="#features">
-                      Explore Features
-                    </Link>
-                  </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        <section className="w-full py-12 md:py-24">
-            <div className="container">
-                <div className="flex justify-center text-center mb-8">
-                    <p className="text-sm uppercase text-muted-foreground tracking-widest">Trusted by leading companies worldwide</p>
-                </div>
-                <div className="mt-8 grid grid-cols-2 items-center justify-center gap-8 text-muted-foreground/60 sm:grid-cols-3 md:grid-cols-6">
-                    <div className="flex justify-center text-lg font-semibold"><span>Company A</span></div>
-                    <div className="flex justify-center text-lg font-semibold"><span>Startup B</span></div>
-                    <div className="flex justify-center text-lg font-semibold"><span>Enterprise C</span></div>
-                    <div className="flex justify-center text-lg font-semibold"><span>Brand D</span></div>
-                    <div className="flex justify-center text-lg font-semibold"><span>Agency E</span></div>
-                    <div className="flex justify-center text-lg font-semibold"><span>Studio F</span></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="features" className="w-full bg-muted py-12 md:py-24 lg:py-32">
+        <section className="w-full py-20 md:py-28 lg:py-32">
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm text-primary font-medium">Key Features</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Everything You Need for Automation</h2>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Our platform is packed with features to help you build powerful and effective chatbots for any purpose, without writing a single line of code.
+            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
+              <div className="flex flex-col justify-center space-y-4">
+                <div className="space-y-4">
+                  <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm text-primary font-medium">
+                    Facebook Messenger Automation
+                  </div>
+                  <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+                    Connect Facebook Messenger with your favorite apps
+                  </h1>
+                  <p className="max-w-[600px] text-muted-foreground md:text-xl">
+                    Design, build, and automate anything for your work by integrating apps like Facebook Messenger to create visual automated workflows. No coding required.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-2 min-[400px]:flex-row">
+                    <Button asChild size="lg">
+                        <Link href="/signup">
+                        Get Started Free
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                    </Button>
+                </div>
+                 <p className="text-xs text-muted-foreground">
+                    No credit card required. No time limit on Free plan.
                 </p>
               </div>
-            </div>
-            <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-3 lg:gap-16 mt-12">
-              <div className="grid gap-2">
-                <Bot className="h-10 w-10 text-primary" />
-                <h3 className="text-xl font-bold">AI-Powered Templates</h3>
-                <p className="text-muted-foreground">Start with pre-built templates for FAQ, Customer Support, E-commerce, and more. Customize them to fit your needs.</p>
-              </div>
-              <div className="grid gap-2">
-                <Zap className="h-10 w-10 text-primary" />
-                <h3 className="text-xl font-bold">No-Code Bot Builder</h3>
-                <p className="text-muted-foreground">Connect your Facebook page and get your first bot running in under 5 minutes with our visual editor.</p>
-              </div>
-              <div className="grid gap-2">
-                <MessageSquare className="h-10 w-10 text-primary" />
-                <h3 className="text-xl font-bold">Knowledge Base Training</h3>
-                <p className="text-muted-foreground">Train your bot on your own content—from websites, documents (PDF, DOCX), or even YouTube videos.</p>
-              </div>
-               <div className="grid gap-2">
-                <CheckCircle className="h-10 w-10 text-primary" />
-                <h3 className="text-xl font-bold">Multi-Language Support</h3>
-                <p className="text-muted-foreground">Engage with your audience in their native language with our built-in automatic translation capabilities.</p>
-              </div>
-               <div className="grid gap-2">
-                <CheckCircle className="h-10 w-10 text-primary" />
-                <h3 className="text-xl font-bold">Easy Management</h3>
-                <p className="text-muted-foreground">A simple and intuitive dashboard to manage all your bots, conversations, and settings in one place.</p>
-              </div>
-               <div className="grid gap-2">
-                <CheckCircle className="h-10 w-10 text-primary" />
-                <h3 className="text-xl font-bold">Analytics & Insights</h3>
-                <p className="text-muted-foreground">Track your bot's performance with key metrics to understand user interaction and improve responses.</p>
-              </div>
+              <img
+                src="https://picsum.photos/600/400"
+                width="600"
+                height="400"
+                alt="Hero"
+                data-ai-hint="abstract illustration"
+                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
+              />
             </div>
           </div>
         </section>
 
-        <section className="w-full py-20 md:py-32">
-            <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
-                <div className="space-y-4">
-                <h2 className="text-4xl font-bold tracking-tighter md:text-5xl/tight font-headline">
-                    Ready to Automate Your Customer Interactions?
-                </h2>
-                <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    Join thousands of businesses who are already using AI to enhance their customer experience.
-                </p>
+        <section id="integrations" className="w-full py-12 md:py-24 bg-muted">
+            <div className="container">
+                <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl font-headline">Connect Any App with Facebook Messenger</h2>
+                    <p className="max-w-[700px] text-muted-foreground md:text-lg">
+                        Choose from thousands of ready-made apps or use our no-code toolkit to connect to apps not yet in our library.
+                    </p>
                 </div>
-                <div className="mx-auto w-full max-w-sm space-y-2">
-                   <Button asChild size="lg" className="w-full">
-                    <Link href="/signup">
-                      Get Started For Free
-                    </Link>
-                  </Button>
-                <p className="text-xs text-muted-foreground">
-                    No credit card required. 14-day free trial.
-                </p>
+                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    {integrations.map((app, index) => (
+                        <Card key={index} className="flex items-center p-4 gap-4 hover:shadow-lg transition-shadow">
+                            {app.icon}
+                            <p className="font-medium">{app.name}</p>
+                        </Card>
+                    ))}
+                </div>
+                <div className="text-center mt-8">
+                     <Button variant="outline">Load More</Button>
                 </div>
             </div>
         </section>
+
+        <section id="templates" className="w-full py-12 md:py-24">
+            <div className="container">
+                <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl font-headline">Popular Facebook Messenger Workflows</h2>
+                    <p className="max-w-[700px] text-muted-foreground md:text-lg">
+                        Looking to get more out of Facebook Messenger? Try any of these templates in just a few clicks.
+                    </p>
+                </div>
+                <div className="grid gap-6 md:grid-cols-2">
+                    {templates.map((template, index) => (
+                        <Card key={index}>
+                            <CardHeader>
+                                <div className="flex items-center gap-2 mb-2">
+                                    {template.apps.map((app, appIndex) => (
+                                        <div key={appIndex} className="flex items-center gap-2">
+                                            <Bot className="h-6 w-6" />
+                                            {appIndex < template.apps.length -1 && <Plus className="h-4 w-4 text-muted-foreground" />}
+                                        </div>
+                                    ))}
+                                </div>
+                                <CardTitle>{template.title}</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <Button>Try It <ArrowRight className="ml-2 h-4 w-4"/></Button>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" className="w-full py-12 md:py-24 bg-muted">
+          <div className="container max-w-3xl">
+            <h2 className="text-3xl font-bold tracking-tighter text-center mb-8 font-headline">Frequently Asked Questions</h2>
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="item-1">
+                <AccordionTrigger>How do I get started with SmartBotLab?</AccordionTrigger>
+                <AccordionContent>
+                  Getting started is easy! Just sign up for a free account, connect your Facebook page, and choose a template. You can have your first bot running in under 5 minutes without writing any code.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger>What is a workflow or scenario?</AccordionTrigger>
+                <AccordionContent>
+                  A workflow (or scenario) is an automated process you create in SmartBotLab. It consists of a trigger (e.g., a new message) and one or more actions (e.g., reply with AI, add data to Google Sheets).
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-3">
+                <AccordionTrigger>Can I connect apps that are not in your library?</AccordionTrigger>
+                <AccordionContent>
+                  Yes! Our no-code toolkit and HTTP module allow you to connect to almost any web service or API, giving you unlimited integration possibilities.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        </section>
+
       </main>
+
        <footer className="border-t">
          <div className="container mx-auto py-12 px-4 md:px-6">
             <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
@@ -188,5 +218,3 @@ export default function LandingPage() {
     </div>
   );
 }
-
-    
