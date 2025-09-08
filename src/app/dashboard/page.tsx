@@ -18,7 +18,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 
 export default async function Dashboard() {
-  const bots: Bot[] = await getBots();
+  const bots: any[] = await getBots();
 
   return (
     <div className="flex min-h-screen w-full flex-col">
@@ -47,15 +47,15 @@ export default async function Dashboard() {
                     <TableCell>
                       <Badge
                         variant={
-                          bot.status === 'active' ? 'default' : 'secondary'
+                          bot.status ? 'default' : 'secondary'
                         }
                         className={`${
-                          bot.status === 'active'
+                          bot.status
                             ? 'bg-green-100 text-green-800'
                             : ''
                         }`}
                       >
-                        {bot.status}
+                        {bot.status ? 'Active' : 'Inactive'}
                       </Badge>
                     </TableCell>
                   </TableRow>

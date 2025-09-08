@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 
 export default function CreateBot() {
   const [pages, setPages] = useState<any[]>([]);
-  const [botData, setBotData] = useState({ name: '', page_id: '', status: true });
+  const [botData, setBotData] = useState({ name: '', page_id: '', purpose: 'FAQ', user_id: 1, status: true }); // Assuming user_id 1 for now
   const { toast } = useToast();
   const router = useRouter();
 
@@ -46,7 +46,10 @@ export default function CreateBot() {
       const response = await fetch('/api/bots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(botData),
+        body: JSON.stringify({
+            ...botData,
+            page_id: parseInt(botData.page_id, 10)
+        }),
       });
 
       if (!response.ok) {
@@ -100,7 +103,7 @@ export default function CreateBot() {
               <SelectContent>
                 {pages.map((page) => (
                   <SelectItem key={page.id} value={String(page.id)}>
-                    {page.name}
+                    {page.title}
                   </SelectItem>
                 ))}
               </SelectContent>

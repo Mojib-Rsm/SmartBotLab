@@ -20,11 +20,35 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, page_id, status } = await req.json();
+    const { name, page_id, purpose, user_id, status } = await req.json();
     const result = await pool.query(
-      'INSERT INTO bots (name, page_id, status, messages_sent, users_interacted, purpose, language) VALUES ($1, $2, $3, 0, 0, \'N/A\', \'en\') RETURNING *',
-      [name, page_id, status ? 'active' : 'inactive']
+      'INSERT INTO bots (name, page_id, purpose, user_id, status) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      [name, page_id, purpose, user_id, status]
     );
+    return NextResponse.json(result.rows[0]);
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message }, { status: 500 });
+  }
+}
+
+export async function PUT(req: NextRequest) {
+  try {
+    const { id, name, status } = await req.json();
+    const result = await pool.query(
+      'UPDATE bots SET name=$1, status=$2 WHERE id=$3 RETURNING *',
+      [name, status, id]
+    );
+    return NextResponse.json(result.rows[0]);
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message }, { status: 500 });
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get('id');
+    const result = await pool.query('DELETE FROM bots WHERE id=$1 RETURNING *', [id]);
     return NextResponse.json(result.rows[0]);
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
