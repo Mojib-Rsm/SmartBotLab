@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import {
   Bell,
@@ -12,6 +13,7 @@ import {
   PlusCircle,
   LogOut,
   HelpCircle,
+  Globe,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -57,6 +59,14 @@ export default function DashboardLayout({
                 <Link href="/dashboard">
                   <Bot />
                   My Bots
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+             <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <Link href="/dashboard/add-website">
+                  <Globe />
+                  Add Website
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
