@@ -55,3 +55,29 @@ export async function getUsers() {
   if (!res.ok) throw new Error('Failed to fetch users');
   return res.json();
 }
+
+export async function getPages() {
+  // In a real app, you'd fetch this from the server.
+  // To keep the example simple, we'll simulate a server fetch.
+  // Using a try-catch block to gracefully handle potential errors.
+  try {
+    const pages = await Promise.resolve(mockPages);
+    return pages;
+  } catch (error) {
+    console.error('Failed to fetch pages:', error);
+    return [];
+  }
+}
+
+export async function getBots() {
+  // In a real app, you'd fetch this from the server.
+  // To keep the example simple, we'll simulate a server fetch.
+  // Using a try-catch block to gracefully handle potential errors.
+  try {
+    const bots = await Promise.resolve(mockBots);
+    return bots;
+  } catch (error) {
+    console.error('Failed to fetch bots:', error);
+    return [];
+  }
+}

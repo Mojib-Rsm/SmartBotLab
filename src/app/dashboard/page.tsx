@@ -35,12 +35,15 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Switch } from '@/components/ui/switch';
-import { mockBots } from '@/lib/data';
+import { getBots } from '@/lib/data';
+import type { Bot } from '@/lib/types';
 
-export default function Dashboard() {
-  const activeBots = mockBots.filter(bot => bot.status === 'active').length;
-  const totalMessages = mockBots.reduce((sum, bot) => sum + bot.messagesSent, 0);
-  const totalUsers = mockBots.reduce((sum, bot) => sum + bot.usersInteracted, 0);
+export default async function Dashboard() {
+  const bots: Bot[] = await getBots();
+  
+  const activeBots = bots.filter(bot => bot.status === 'active').length;
+  const totalMessages = bots.reduce((sum, bot) => sum + bot.messagesSent, 0);
+  const totalUsers = bots.reduce((sum, bot) => sum + bot.usersInteracted, 0);
 
   return (
     <div className="flex min-h-screen w-full flex-col">
@@ -74,7 +77,7 @@ export default function Dashboard() {
                 <BotIcon className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{mockBots.length}</div>
+                <div className="text-2xl font-bold">{bots.length}</div>
                 <p className="text-xs text-muted-foreground">
                   Your army of assistants
                 </p>
@@ -146,7 +149,7 @@ export default function Dashboard() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {mockBots.map(bot => (
+                  {bots.map(bot => (
                     <TableRow key={bot.id}>
                       <TableCell>
                         <div className="flex items-center gap-3">
