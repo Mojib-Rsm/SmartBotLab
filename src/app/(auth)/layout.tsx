@@ -16,7 +16,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         <div className="relative z-10 text-center">
             <div className="mb-6">
-                <Image src="/make-logo.svg" alt="SmartBotLab Logo" width={140} height={40} className="mx-auto" />
+                <Image src="/smartbotlab.png" alt="SmartBotLab Logo" width={140} height={40} className="mx-auto" />
             </div>
           <h1 className="text-5xl font-bold">Connect apps</h1>
           <h2 className="text-5xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent mt-2">#withSmartBotLab</h2>
