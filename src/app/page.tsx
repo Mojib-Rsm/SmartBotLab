@@ -43,6 +43,9 @@ import {
   Link2,
   MessageSquare,
   Minus,
+  Star,
+  TrendingUp,
+  Users,
   Zap,
 } from 'lucide-react';
 import { Logo } from '@/components/logo';
@@ -52,6 +55,8 @@ import { ChatWidget } from '@/components/chat-widget';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { useState } from 'react';
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
+
 
 const testimonials = [
   {
@@ -199,6 +204,15 @@ const IntegrationIcon = ({ children, name }: { children: React.ReactNode, name: 
     <p className="font-medium">{name}</p>
   </div>
 );
+
+const chartData = [
+  { name: "Jan", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "Feb", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "Mar", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "Apr", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "May", total: Math.floor(Math.random() * 5000) + 1000 },
+  { name: "Jun", total: Math.floor(Math.random() * 5000) + 1000 },
+]
 
 export default function LandingPage() {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
@@ -429,6 +443,100 @@ export default function LandingPage() {
                 </CardContent>
               </Card>
             </div>
+          </div>
+        </section>
+        
+        <section id="analytics-preview" className="w-full py-12 md:py-24 bg-muted">
+          <div className="container">
+             <div className="mb-12 flex flex-col items-center justify-center space-y-4 text-center">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                Powerful Analytics at Your Fingertips
+              </h2>
+              <p className="max-w-[700px] text-muted-foreground md:text-lg">
+                Track your bot's performance, understand user behavior, and make data-driven decisions to improve customer engagement.
+              </p>
+            </div>
+            
+            <Card className="overflow-hidden shadow-2xl">
+                <div className="flex items-center gap-2 p-4 border-b bg-background/50">
+                    <div className="flex gap-1.5">
+                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div className="flex-1 text-center text-sm font-medium text-muted-foreground">
+                        Analytics Overview
+                    </div>
+                </div>
+                <CardContent className="p-6">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <Card>
+                            <CardHeader className="flex flex-row items-center justify-between pb-2">
+                                <CardTitle className="text-sm font-medium">Total Messages</CardTitle>
+                                <MessageSquare className="w-5 h-5 text-primary" />
+                            </CardHeader>
+                            <CardContent>
+                                <div className="text-3xl font-bold">12,540</div>
+                                <p className="text-xs text-muted-foreground">+15.2% from last month</p>
+                            </CardContent>
+                        </Card>
+                         <Card>
+                            <CardHeader className="flex flex-row items-center justify-between pb-2">
+                                <CardTitle className="text-sm font-medium">Active Users</CardTitle>
+                                <Users className="w-5 h-5 text-primary" />
+                            </CardHeader>
+                            <CardContent>
+                                <div className="text-3xl font-bold">832</div>
+                                <p className="text-xs text-muted-foreground">+5.7% from last month</p>
+                            </CardContent>
+                        </Card>
+                         <Card>
+                            <CardHeader className="flex flex-row items-center justify-between pb-2">
+                                <CardTitle className="text-sm font-medium">Conversion Rate</CardTitle>
+                                <TrendingUp className="w-5 h-5 text-primary" />
+                            </CardHeader>
+                            <CardContent>
+                                <div className="text-3xl font-bold">24.5%</div>
+                                <p className="text-xs text-muted-foreground">+2.1% from last month</p>
+                            </CardContent>
+                        </Card>
+                         <Card>
+                            <CardHeader className="flex flex-row items-center justify-between pb-2">
+                                <CardTitle className="text-sm font-medium">Feedback</CardTitle>
+                                <Star className="w-5 h-5 text-primary" />
+                            </CardHeader>
+                            <CardContent>
+                                <div className="text-3xl font-bold">4.8/5</div>
+                                <p className="text-xs text-muted-foreground">Based on 253 reviews</p>
+                            </CardContent>
+                        </Card>
+                    </div>
+                    <div className="mt-8">
+                         <h3 className="text-lg font-semibold mb-4">Monthly Engagement</h3>
+                         <div className="h-[250px]">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <BarChart data={chartData}>
+                                    <XAxis
+                                        dataKey="name"
+                                        stroke="#888888"
+                                        fontSize={12}
+                                        tickLine={false}
+                                        axisLine={false}
+                                    />
+                                    <YAxis
+                                        stroke="#888888"
+                                        fontSize={12}
+                                        tickLine={false}
+                                        axisLine={false}
+                                        tickFormatter={(value) => `${value}`}
+                                    />
+                                    <Bar dataKey="total" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                                </BarChart>
+                            </ResponsiveContainer>
+                         </div>
+                    </div>
+                </CardContent>
+            </Card>
           </div>
         </section>
 
@@ -783,3 +891,5 @@ export default function LandingPage() {
     </div>
   );
 }
+
+    
