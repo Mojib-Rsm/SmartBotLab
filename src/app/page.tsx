@@ -115,7 +115,7 @@ const pricingPlans = {
   monthly: [
     {
       name: 'Starter',
-      price: '$19',
+      price: '৳1900',
       priceSuffix: '/mo',
       features: [
         '1 Chatbot',
@@ -127,7 +127,7 @@ const pricingPlans = {
     },
     {
       name: 'Pro',
-      price: '$49',
+      price: '৳4900',
       priceSuffix: '/mo',
       features: [
         '5 Chatbots',
@@ -141,7 +141,7 @@ const pricingPlans = {
     },
     {
       name: 'Business',
-      price: '$99',
+      price: '৳9900',
       priceSuffix: '/mo',
       features: [
         'Unlimited Chatbots',
@@ -156,7 +156,7 @@ const pricingPlans = {
   yearly: [
     {
       name: 'Starter',
-      price: '$15',
+      price: '৳1500',
       priceSuffix: '/mo',
       features: [
         '1 Chatbot',
@@ -168,7 +168,7 @@ const pricingPlans = {
     },
     {
       name: 'Pro',
-      price: '$39',
+      price: '৳3900',
       priceSuffix: '/mo',
       features: [
         '5 Chatbots',
@@ -182,7 +182,7 @@ const pricingPlans = {
     },
     {
       name: 'Business',
-      price: '$79',
+      price: '৳7900',
       priceSuffix: '/mo',
       features: [
         'Unlimited Chatbots',
