@@ -54,8 +54,13 @@ const getBaseUrl = () => {
     if (process.env.NEXT_PUBLIC_VERCEL_URL) {
         return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
     }
-    return 'http://localhost:9002'; 
-}
+    // Check if it's a development environment
+    if (process.env.NODE_ENV === 'development') {
+      return 'http://localhost:9002';
+    }
+    // Fallback for other environments, might need adjustment based on deployment
+    return 'http://localhost:9002';
+};
 
 export async function getUsers() {
   const res = await fetch(`${getBaseUrl()}/api/db`);
@@ -64,13 +69,26 @@ export async function getUsers() {
 }
 
 export async function getPages() {
-  const res = await fetch(`${getBaseUrl()}/api/pages`);
-  if (!res.ok) throw new Error('Failed to fetch pages');
-  return res.json();
+    // In a real app, you'd fetch this from your database.
+    // For now, we'll return mock data.
+    return Promise.resolve(mockPages);
 }
 
-export async function getBots() {
-  const res = await fetch(`${getBaseUrl()}/api/bots`);
-  if (!res.ok) throw new Error('Failed to fetch bots');
-  return res.json();
+export async function getBots(): Promise<Bot[]> {
+  // Use mock data as a fallback if not in a dev environment with DB
+  if (process.env.NODE_ENV !== 'development') {
+    return Promise.resolve(mockBots);
+  }
+
+  try {
+    const res = await fetch(`${getBaseUrl()}/api/bots`);
+    if (!res.ok) {
+        console.error("API call failed, falling back to mock data.");
+        return mockBots;
+    }
+    return res.json();
+  } catch (error) {
+    console.error("Failed to fetch bots, falling back to mock data:", error);
+    return mockBots;
+  }
 }
