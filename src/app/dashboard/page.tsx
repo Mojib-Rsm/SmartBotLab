@@ -19,9 +19,9 @@ import { Badge } from '@/components/ui/badge';
 import { Bot as BotIcon, CheckCircle, MessageSquare, Users } from 'lucide-react';
 
 export default async function Dashboard() {
-  const bots: any[] = await getBots();
+  const bots: Bot[] = await getBots();
   const totalBots = bots.length;
-  const activeBots = bots.filter((bot) => bot.status).length;
+  const activeBots = bots.filter((bot) => bot.status === 'active').length;
   // These are mock calculations. In a real app, this data would come from the database.
   const totalMessages = 5670;
   const totalUsers = 1375;
@@ -104,15 +104,15 @@ export default async function Dashboard() {
                     <TableCell>
                       <Badge
                         variant={
-                          bot.status ? 'default' : 'secondary'
+                          bot.status === 'active' ? 'default' : 'secondary'
                         }
                         className={`${
-                          bot.status
+                          bot.status === 'active'
                             ? 'bg-green-100 text-green-800 hover:bg-green-200'
                             : ''
                         }`}
                       >
-                        {bot.status ? 'Active' : 'Inactive'}
+                        {bot.status === 'active' ? 'Active' : 'Inactive'}
                       </Badge>
                     </TableCell>
                   </TableRow>

@@ -50,20 +50,27 @@ export const mockBots: Bot[] = [
   },
 ];
 
+const getBaseUrl = () => {
+    if (process.env.NEXT_PUBLIC_VERCEL_URL) {
+        return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+    }
+    return 'http://localhost:9002'; 
+}
+
 export async function getUsers() {
-  const res = await fetch('/api/db');
+  const res = await fetch(`${getBaseUrl()}/api/db`);
   if (!res.ok) throw new Error('Failed to fetch users');
   return res.json();
 }
 
 export async function getPages() {
-  const res = await fetch('/api/pages');
+  const res = await fetch(`${getBaseUrl()}/api/pages`);
   if (!res.ok) throw new Error('Failed to fetch pages');
   return res.json();
 }
 
 export async function getBots() {
-  const res = await fetch('/api/bots');
+  const res = await fetch(`${getBaseUrl()}/api/bots`);
   if (!res.ok) throw new Error('Failed to fetch bots');
   return res.json();
 }
