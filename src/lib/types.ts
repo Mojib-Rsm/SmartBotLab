@@ -12,6 +12,7 @@ export type Bot = {
 export type FacebookPage = {
   id: string;
   name: string;
+  access_token?: string; // Important for API calls
 };
 
 export type Conversation = {

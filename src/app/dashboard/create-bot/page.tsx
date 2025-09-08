@@ -8,12 +8,32 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
+import { signIn, useSession } from 'next-auth/react';
+import type { FacebookPage } from '@/lib/types';
+import { FacebookIcon } from 'lucide-react';
+
+const FacebookPageSelector = ({ pages, selectedPage, onSelectPage }: { pages: FacebookPage[], selectedPage: string, onSelectPage: (pageId: string) => void }) => (
+  <Select value={selectedPage} onValueChange={onSelectPage}>
+    <SelectTrigger id="page-select">
+      <SelectValue placeholder="Select a page" />
+    </SelectTrigger>
+    <SelectContent>
+      {pages.map((page) => (
+        <SelectItem key={page.id} value={String(page.id)}>
+          {page.name}
+        </SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
+);
+
 
 export default function CreateBot() {
-  const [pages, setPages] = useState<any[]>([]);
+  const [pages, setPages] = useState<FacebookPage[]>([]);
   const [botData, setBotData] = useState({ name: '', page_id: '', purpose: 'FAQ', user_id: 1, status: true }); // Assuming user_id 1 for now
   const { toast } = useToast();
   const router = useRouter();
+  const { data: session } = useSession();
 
   useEffect(() => {
     async function fetchPages() {
@@ -31,6 +51,13 @@ export default function CreateBot() {
     }
     fetchPages();
   }, [toast]);
+
+  const handleLinkFacebook = () => {
+    // This would typically involve a more complex OAuth flow to get page access tokens.
+    // For now, we'll just use the sign-in to establish the link conceptually.
+    signIn('facebook', { callbackUrl: '/dashboard/create-bot?linked=true' });
+  };
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -93,21 +120,20 @@ export default function CreateBot() {
 
           <div className="grid gap-2">
             <Label htmlFor="page-select">Facebook Page</Label>
-             <Select
-              value={botData.page_id}
-              onValueChange={(value) => setBotData({ ...botData, page_id: value })}
-            >
-              <SelectTrigger id="page-select">
-                <SelectValue placeholder="Select a page" />
-              </SelectTrigger>
-              <SelectContent>
-                {pages.map((page) => (
-                  <SelectItem key={page.id} value={String(page.id)}>
-                    {page.title}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <div className="flex items-center gap-2">
+              {pages.length > 0 ? (
+                  <FacebookPageSelector
+                      pages={pages}
+                      selectedPage={botData.page_id}
+                      onSelectPage={(pageId) => setBotData({ ...botData, page_id: pageId })}
+                  />
+              ) : (
+                  <p className="text-sm text-muted-foreground">No pages found. Link your account.</p>
+              )}
+              <Button type="button" variant="outline" onClick={handleLinkFacebook}>
+                  <FacebookIcon className="mr-2 h-4 w-4" /> Link Page
+              </Button>
+            </div>
           </div>
           
           <div className="grid gap-2">

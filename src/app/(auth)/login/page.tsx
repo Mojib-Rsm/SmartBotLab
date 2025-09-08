@@ -95,11 +95,11 @@ export default function LoginPage() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <Button variant="outline" onClick={() => signIn('google', { callbackUrl: '/dashboard' })}>
-              <GoogleIcon /> Google
+             <Button variant="outline" onClick={() => signIn('google', { callbackUrl: '/dashboard' })}>
+              <GoogleIcon />&nbsp;Google
             </Button>
             <Button variant="outline" onClick={() => signIn('facebook', { callbackUrl: '/dashboard' })}>
-              <FacebookIcon /> Facebook
+              <FacebookIcon />&nbsp;Facebook
             </Button>
           </div>
         </div>
