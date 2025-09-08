@@ -22,23 +22,23 @@ export function UserNav({
     <Avatar className="h-9 w-9">
       <AvatarImage
         src="https://picsum.photos/100"
-        alt="@shadcn"
+        alt="User Avatar"
         data-ai-hint="person face"
       />
-      <AvatarFallback>CH</AvatarFallback>
+      <AvatarFallback>U</AvatarFallback>
     </Avatar>
   ) : (
     <div className="flex items-center gap-2">
       <Avatar className="h-9 w-9">
         <AvatarImage
           src="https://picsum.photos/100"
-          alt="Courtney Henry"
+          alt="User Avatar"
           data-ai-hint="person face"
         />
-        <AvatarFallback>CH</AvatarFallback>
+        <AvatarFallback>U</AvatarFallback>
       </Avatar>
       <div className="hidden text-left group-data-[collapsible=icon]:hidden">
-        <p className="text-sm font-medium leading-none">Courtney Henry</p>
+        <p className="text-sm font-medium leading-none">Your Name</p>
         <p className="text-xs leading-none text-muted-foreground">Online</p>
       </div>
       <ChevronDown className="ml-auto hidden h-4 w-4 text-muted-foreground group-data-[collapsible=icon]:hidden" />
@@ -58,9 +58,9 @@ export function UserNav({
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">Courtney Henry</p>
+            <p className="text-sm font-medium leading-none">Your Name</p>
             <p className="text-xs leading-none text-muted-foreground">
-              courtney.henry@example.com
+              user@example.com
             </p>
           </div>
         </DropdownMenuLabel>

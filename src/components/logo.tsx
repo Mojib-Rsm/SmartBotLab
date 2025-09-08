@@ -7,7 +7,7 @@ export function Logo({ className }: { className?: string }) {
     <Link href="/dashboard" className={cn("flex items-center gap-2", className)}>
       <BrainCircuit className="h-6 w-6 text-primary" />
       <span className="hidden text-lg font-bold tracking-tight text-foreground sm:inline-block">
-        Prodify
+        SmartBotLab
       </span>
     </Link>
   );
