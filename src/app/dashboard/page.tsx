@@ -10,8 +10,11 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Plus, Bot as BotIcon, MessageCircle, BarChartHorizontal } from 'lucide-react';
+import { Plus, Bot as BotIcon, MessageCircle, BarChartHorizontal, Sparkles } from 'lucide-react';
 import Link from 'next/link';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import Image from 'next/image';
+
 
 const StatCard = ({ title, value, icon }: { title: string, value: string, icon: React.ReactNode }) => (
     <Card>
@@ -30,8 +33,15 @@ export default function Dashboard() {
   const [bots, setBots] = useState<Bot[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showWelcome, setShowWelcome] = useState(false);
 
   useEffect(() => {
+    const hasVisited = localStorage.getItem('hasVisited');
+    if (!hasVisited) {
+      setShowWelcome(true);
+      localStorage.setItem('hasVisited', 'true');
+    }
+    
     async function loadBots() {
       try {
         setLoading(true);
@@ -105,6 +115,35 @@ export default function Dashboard() {
             )}
         </div>
       </main>
+
+       <Dialog open={showWelcome} onOpenChange={setShowWelcome}>
+        <DialogContent className="sm:max-w-md p-0 overflow-hidden">
+          <div className="relative h-48 w-full">
+            <Image src="https://picsum.photos/600/200?random=10" layout="fill" objectFit="cover" alt="Welcome banner" data-ai-hint="abstract purple" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-center justify-center">
+                 <h2 className="text-3xl font-bold text-primary-foreground flex items-center gap-2">
+                   <Sparkles className="h-8 w-8" />
+                   SmartBotLab + AI
+                 </h2>
+            </div>
+          </div>
+          <DialogHeader className="p-6 text-center">
+            <DialogTitle className="text-2xl">Welcome to SmartBotLab</DialogTitle>
+            <DialogDescription>
+              Your smarter way to automate with AI. Let's show you how to work faster and achieve more!
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex-row items-center justify-center gap-2 pb-6 px-6">
+            <Button type="button" variant="outline" onClick={() => setShowWelcome(false)} className="flex-1">
+              Skip the tour
+            </Button>
+            <Button type="button" onClick={() => setShowWelcome(false)} className="flex-1">
+              Start Exploring
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
     </div>
   );
 }
