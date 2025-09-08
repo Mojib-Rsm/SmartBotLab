@@ -68,27 +68,14 @@ export async function getUsers() {
   return res.json();
 }
 
-export async function getPages() {
+export async function getPages(): Promise<FacebookPage[]> {
     // In a real app, you'd fetch this from your database.
-    // For now, we'll return mock data.
+    // For now, we'll return mock data to avoid API errors.
     return Promise.resolve(mockPages);
 }
 
 export async function getBots(): Promise<Bot[]> {
-  // Use mock data as a fallback if not in a dev environment with DB
-  if (process.env.NODE_ENV !== 'development') {
-    return Promise.resolve(mockBots);
-  }
-
-  try {
-    const res = await fetch(`${getBaseUrl()}/api/bots`);
-    if (!res.ok) {
-        console.error("API call failed, falling back to mock data.");
-        return mockBots;
-    }
-    return res.json();
-  } catch (error) {
-    console.error("Failed to fetch bots, falling back to mock data:", error);
-    return mockBots;
-  }
+  // In a real app, you'd fetch this from your database.
+  // For now, we'll return mock data to avoid API errors.
+  return Promise.resolve(mockBots);
 }
