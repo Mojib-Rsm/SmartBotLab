@@ -770,17 +770,21 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section className="w-full bg-primary py-12 text-primary-foreground md:py-24">
+        <section className="w-full bg-gradient-to-r from-purple-600 to-blue-500 py-12 text-primary-foreground md:py-24">
           <div className="container text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-              Integrate Our Advanced AI Chatbots Into Your Facebook Business
-              Page
+             Start building your SmartBot today!
             </h2>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Button asChild size="lg" variant="secondary">
                 <Link href="/signup">
-                  Sign Up Free
+                  Get Started Free
                   <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+               <Button asChild size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+                <Link href="/book-demo">
+                  Book a Demo
                 </Link>
               </Button>
             </div>
@@ -891,5 +895,3 @@ export default function LandingPage() {
     </div>
   );
 }
-
-    
