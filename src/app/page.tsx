@@ -24,6 +24,8 @@ const templates = [
     { title: 'Automatically translate new Facebook Messenger messages with DeepL', apps: ['Facebook Messenger', 'DeepL'] },
     { title: 'Send a Slack notification for new Facebook Messenger messages', apps: ['Facebook Messenger', 'Slack'] },
     { title: 'Add new Facebook Messenger messages to Trello as cards', apps: ['Facebook Messenger', 'Trello'] },
+    { title: 'Create personalized audio responses for new Facebook Messenger messages', apps: ['Facebook Messenger', 'Google Cloud Text-to-Speech'] },
+    { title: 'Detect Dialogflow intents for new Messenger messages', apps: ['Facebook Messenger', 'Google Cloud Dialogflow ES'] },
 ];
 
 export default function LandingPage() {
@@ -119,7 +121,7 @@ export default function LandingPage() {
                         Looking to get more out of Facebook Messenger? Try any of these templates in just a few clicks.
                     </p>
                 </div>
-                <div className="grid gap-6 md:grid-cols-2">
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {templates.map((template, index) => (
                         <Card key={index}>
                             <CardHeader>
@@ -162,6 +164,12 @@ export default function LandingPage() {
                 <AccordionTrigger>Can I connect apps that are not in your library?</AccordionTrigger>
                 <AccordionContent>
                   Yes! Our no-code toolkit and HTTP module allow you to connect to almost any web service or API, giving you unlimited integration possibilities.
+                </AccordionContent>
+              </AccordionItem>
+               <AccordionItem value="item-4">
+                <AccordionTrigger>What is a module?</AccordionTrigger>
+                <AccordionContent>
+                  A module is a building block of a workflow. It can be a trigger that starts the workflow or an action that performs a task, like sending a message or creating a user.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
