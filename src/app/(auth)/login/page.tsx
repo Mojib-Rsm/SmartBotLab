@@ -1,3 +1,5 @@
+'use client';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
@@ -93,10 +95,10 @@ export default function LoginPage() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <Button variant="outline">
+            <Button variant="outline" onClick={() => signIn('google', { callbackUrl: '/dashboard' })}>
               <GoogleIcon /> Google
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" onClick={() => signIn('facebook', { callbackUrl: '/dashboard' })}>
               <FacebookIcon /> Facebook
             </Button>
           </div>
