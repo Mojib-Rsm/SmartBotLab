@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -14,9 +15,12 @@ import {
 } from '@/components/ui/accordion';
 import {
   ArrowRight,
+  BarChart2,
   Bot,
   BrainCircuit,
+  CreditCard,
   Languages,
+  Link2,
   Mail,
   MessageSquare,
   Zap,
@@ -209,82 +213,91 @@ export default function LandingPage() {
           <div className="container">
             <div className="mb-12 flex flex-col items-center justify-center space-y-4 text-center">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                Messenger Customer Support Chatbots
+                Feature-Packed AI Chatbots
               </h2>
+              <p className="max-w-[700px] text-muted-foreground md:text-lg">
+                Everything you need to build a powerful AI assistant for your business.
+              </p>
             </div>
-            <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-              <div className="flex gap-4">
-                <div>
-                  <BrainCircuit className="h-8 w-8 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold">CUSTOM KNOWLEDGE</h3>
-                  <p className="mt-1 text-muted-foreground">
-                    Add information about your business so the chatbot can
-                    respond with accurate answers.
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <Card>
+                <CardHeader className="flex flex-row items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <BrainCircuit className="h-6 w-6" />
+                  </div>
+                  <CardTitle>Train with Your Data</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Train with Website, PDF, YouTube.
                   </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div>
-                  <Zap className="h-8 w-8 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold">24/7/365 AVAILABILITY</h3>
-                  <p className="mt-1 text-muted-foreground">
-                    Offer support via Messenger around the clock to gain more
-                    sales and positive reviews.
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="flex flex-row items-center gap-4">
+                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <Link2 className="h-6 w-6" />
+                  </div>
+                  <CardTitle>Connect Multiple Platforms</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Connect to Facebook, WhatsApp, Website.
                   </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div>
-                  <MessageSquare className="h-8 w-8 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold">REPLY TO COMMENTS</h3>
-                  <p className="mt-1 text-muted-foreground">
-                    Your chatbot can also be set to respond to any comments your
-                    posts receive too.
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="flex flex-row items-center gap-4">
+                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <Zap className="h-6 w-6" />
+                  </div>
+                  <CardTitle>Real-time Customer Support</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Provide instant answers and support 24/7.
                   </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div>
-                  <Bot className="h-8 w-8 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold">MULTIPLE CONVERSATIONS</h3>
-                  <p className="mt-1 text-muted-foreground">
-                    Your chatbot can deal with multiple concurrent
-                    conversations, replacing the need for multiple agents.
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="flex flex-row items-center gap-4">
+                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <CreditCard className="h-6 w-6" />
+                  </div>
+                  <CardTitle>E-commerce Ready</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Handle orders, tracking, and upsells effortlessly.
                   </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div>
-                  <Languages className="h-8 w-8 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold">MULTILINGUAL SUPPORT</h3>
-                  <p className="mt-1 text-muted-foreground">
-                    Your Messenger chatbot will be able to communicate in 95
-                    languages.
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="flex flex-row items-center gap-4">
+                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <Languages className="h-6 w-6" />
+                  </div>
+                  <CardTitle>Multilingual AI Bots</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Engage with your customers in their native language.
                   </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div>
-                  <Mail className="h-8 w-8 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold">CHAT HISTORY</h3>
-                  <p className="mt-1 text-muted-foreground">
-                    Have conversations automatically emailed to you and saved
-                    for future reference.
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="flex flex-row items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <BarChart2 className="h-6 w-6" />
+                  </div>
+                  <CardTitle>Analytics & Insights</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Gain valuable insights from customer interactions.
                   </p>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
