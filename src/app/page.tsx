@@ -1,4 +1,6 @@
 
+'use client';
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
@@ -7,6 +9,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from '@/components/ui/card';
 import {
   Accordion,
@@ -19,6 +22,7 @@ import {
   BarChart2,
   Bot,
   BrainCircuit,
+  Check,
   CreditCard,
   Languages,
   Link2,
@@ -29,6 +33,9 @@ import { Logo } from '@/components/logo';
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ChatWidget } from '@/components/chat-widget';
+import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
+import { useState } from 'react';
 
 const testimonials = [
   {
@@ -77,7 +84,95 @@ const faqItems = [
   },
 ];
 
+const pricingPlans = {
+  monthly: [
+    {
+      name: 'Starter',
+      price: '$19',
+      priceSuffix: '/mo',
+      features: [
+        '1 Chatbot',
+        '500 Messages/mo',
+        'Basic Analytics',
+        'Email Support',
+      ],
+      cta: 'Get Started',
+    },
+    {
+      name: 'Pro',
+      price: '$49',
+      priceSuffix: '/mo',
+      features: [
+        '5 Chatbots',
+        '2,500 Messages/mo',
+        'Advanced Analytics',
+        'Priority Email Support',
+        'API Access',
+      ],
+      cta: 'Get Started',
+      popular: true,
+    },
+    {
+      name: 'Business',
+      price: '$99',
+      priceSuffix: '/mo',
+      features: [
+        'Unlimited Chatbots',
+        '10,000 Messages/mo',
+        'Full Analytics Suite',
+        'Dedicated Phone Support',
+        'Custom Integrations',
+      ],
+      cta: 'Contact Sales',
+    },
+  ],
+  yearly: [
+    {
+      name: 'Starter',
+      price: '$15',
+      priceSuffix: '/mo',
+      features: [
+        '1 Chatbot',
+        '500 Messages/mo',
+        'Basic Analytics',
+        'Email Support',
+      ],
+      cta: 'Get Started',
+    },
+    {
+      name: 'Pro',
+      price: '$39',
+      priceSuffix: '/mo',
+      features: [
+        '5 Chatbots',
+        '2,500 Messages/mo',
+        'Advanced Analytics',
+        'Priority Email Support',
+        'API Access',
+      ],
+      cta: 'Get Started',
+      popular: true,
+    },
+    {
+      name: 'Business',
+      price: '$79',
+      priceSuffix: '/mo',
+      features: [
+        'Unlimited Chatbots',
+        '10,000 Messages/mo',
+        'Full Analytics Suite',
+        'Dedicated Phone Support',
+        'Custom Integrations',
+      ],
+      cta: 'Contact Sales',
+    },
+  ],
+};
+
+
 export default function LandingPage() {
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+
   return (
     <div className="flex min-h-dvh flex-col bg-background text-foreground">
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -95,6 +190,12 @@ export default function LandingPage() {
               className="text-muted-foreground transition-colors hover:text-foreground"
             >
               How it Works
+            </Link>
+             <Link
+              href="#pricing"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Pricing
             </Link>
             <Link
               href="#testimonials"
@@ -301,7 +402,71 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="testimonials" className="w-full bg-muted py-12 md:py-24">
+        <section id="pricing" className="w-full bg-muted py-12 md:py-24 lg:py-32">
+          <div className="container px-4 md:px-6">
+            <div className="mb-12 flex flex-col items-center justify-center space-y-4 text-center">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                Pricing Plans
+              </h2>
+              <p className="max-w-[700px] text-muted-foreground md:text-lg">
+                Choose the plan that's right for you.
+              </p>
+              <div className="flex items-center space-x-2">
+                <Label htmlFor="billing-cycle">Monthly</Label>
+                <Switch
+                  id="billing-cycle"
+                  checked={billingCycle === 'yearly'}
+                  onCheckedChange={(checked) =>
+                    setBillingCycle(checked ? 'yearly' : 'monthly')
+                  }
+                />
+                <Label htmlFor="billing-cycle">Yearly (Save 20%)</Label>
+              </div>
+            </div>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {pricingPlans[billingCycle].map((plan, index) => (
+                <Card
+                  key={index}
+                  className={plan.popular ? 'border-primary shadow-lg' : ''}
+                >
+                  <CardHeader>
+                    {plan.popular && (
+                      <div className="relative text-right">
+                        <div className="absolute -top-4 right-4 inline-block rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
+                          POPULAR
+                        </div>
+                      </div>
+                    )}
+                    <CardTitle>{plan.name}</CardTitle>
+                    <CardDescription>
+                      <span className="text-4xl font-bold">{plan.price}</span>
+                      <span className="text-muted-foreground">
+                        {plan.priceSuffix}
+                      </span>
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3">
+                      {plan.features.map((feature, fIndex) => (
+                        <li key={fIndex} className="flex items-center gap-2">
+                          <Check className="h-5 w-5 text-green-500" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                  <CardFooter>
+                    <Button asChild className="w-full">
+                      <Link href="/signup">{plan.cta}</Link>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="testimonials" className="w-full py-12 md:py-24">
           <div className="container">
             <div className="mb-12 flex flex-col items-center justify-center space-y-4 text-center">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
@@ -341,7 +506,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="faq" className="w-full py-12 md:py-24">
+        <section id="faq" className="w-full bg-muted py-12 md:py-24">
           <div className="container max-w-4xl">
             <h2 className="mb-8 text-center text-3xl font-bold tracking-tighter">
               Frequently Asked Questions
