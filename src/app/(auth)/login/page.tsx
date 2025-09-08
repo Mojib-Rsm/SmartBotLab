@@ -65,7 +65,7 @@ export default function LoginPage() {
                 <div className="grid gap-2">
                     <div className="flex items-center">
                         <Label htmlFor="password">Password</Label>
-                        <Link href="#" className="ml-auto inline-block text-sm text-primary underline">
+                        <Link href="/lost-password" className="ml-auto inline-block text-sm text-primary underline">
                             Forgot your password?
                         </Link>
                     </div>
@@ -81,6 +81,17 @@ export default function LoginPage() {
                     Click here to sign up.
                 </Link>
             </div>
+            <div className="mt-4 text-center text-sm">
+                 <Link href="/resend-verification" className="text-sm text-muted-foreground hover:text-primary underline">
+                    Resend verification email
+                </Link>
+                 <span className="mx-2 text-muted-foreground">·</span>
+                <Link href="/login-issue" className="text-sm text-muted-foreground hover:text-primary underline">
+                   Login issues
+                </Link>
+            </div>
         </div>
     );
 }
+
+    
