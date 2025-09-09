@@ -1,8 +1,2 @@
 RewriteEngine On
-
-# Force HTTPS
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Proxy to Next.js app
 RewriteRule ^(.*)$ http://127.0.0.1:8081/$1 [P,L]
