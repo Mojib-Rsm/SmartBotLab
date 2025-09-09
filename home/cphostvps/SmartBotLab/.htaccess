@@ -1,8 +1,4 @@
 RewriteEngine On
-RewriteCond %{HTTP:Upgrade} websocket [NC]
-RewriteCond %{HTTP:Connection} upgrade [NC]
-RewriteRule .* "ws://127.0.0.1:8081%{REQUEST_URI}" [P,L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule .* "http://127.0.0.1:8081%{REQUEST_URI}" [P,L]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteRule ^(.*)$ http://127.0.0.1:8081/$1 [P,L]
