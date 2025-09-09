@@ -1,2 +1,9 @@
+# LiteSpeed-specific configuration
 RewriteEngine On
+
+# Redirect HTTP to HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Proxy requests to the Node.js app running on port 9002
 RewriteRule ^(.*)$ http://127.0.0.1:9002/$1 [P,L]
